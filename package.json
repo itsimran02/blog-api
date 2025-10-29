@@ -4,6 +4,7 @@
   "description": "robust and scalable blog api ",
   "main": "dist/server.js",
   "scripts": {
+    "build": "tsc && tsc-alias",
     "dev": "nodemon",
     "test": "vitest",
     "test:watch": "vitest --watch",
@@ -18,6 +19,7 @@
     "prettier": "^3.6.2",
     "supertest": "^7.1.4",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
     "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.0.3"
