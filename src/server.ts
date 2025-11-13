@@ -15,6 +15,7 @@ import limiter from '@/lib/express-rate-limiter';
 import v1Routes from '@/routes/v1';
 import cookieParser from 'cookie-parser';
 import { connectToDatabase, disconnectTheDatabase } from '@/lib/mongoose';
+import { logger } from '@/lib/winston';
 
 // @types
 import type { CorsOptions } from 'cors';
@@ -38,6 +39,9 @@ const corsOptions: CorsOptions = {
           `Cors Error ${origin || 'no expected origin found'}  not allowed by CORS`,
         ),
         false,
+      );
+      logger.warn(
+        `Cors Error ${origin || 'no expected origin found'}  not allowed by CORS`,
       );
     }
   },
@@ -76,10 +80,10 @@ app.use('/api/v1', v1Routes);
 
     // start the server
     app.listen(config.PORT, () => {
-      console.log(`your app is running on http://localhost:${config.PORT}`);
+      logger.info(`your app is running on http://localhost:${config.PORT}`);
     });
   } catch (err) {
-    console.log(
+    logger.error(
       'failed to start the server',
       err instanceof Error ? err.message : String(err),
     );
@@ -92,10 +96,10 @@ app.use('/api/v1', v1Routes);
 const handleServerShutdown = async () => {
   try {
     await disconnectTheDatabase();
-    console.log('SERVER STOPPED');
+    logger.info('SERVER STOPPED');
     process.exit(0);
   } catch (err) {
-    console.log(err);
+    logger.error(err);
   }
 };
 
