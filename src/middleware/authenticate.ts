@@ -1,4 +1,3 @@
-import config from '@/config';
 import { verifyAccessToken } from '@/lib/jwt';
 import { logger } from '@/lib/winston';
 import type { Request, Response, NextFunction } from 'express';
