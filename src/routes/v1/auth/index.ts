@@ -6,7 +6,7 @@ import { cookie } from 'express-validator';
 
 // custom modules
 import register from '@/controllers/v1/auth/register';
-import refreshToken from '@/controllers/v1/auth/refresh-token';
+import refreshToken from '@/controllers/v1/auth/refresh_token';
 import login from '@/controllers/v1/auth/login';
 import validationError from '@/middleware/validationError';
 import User from '@/models/user';

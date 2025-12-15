@@ -10,11 +10,20 @@ const authenticate = async (
   next: NextFunction,
 ) => {
   try {
-    const token = req.headers.authorization as string;
+    const authHeader = req.headers.authorization as string;
+    if (!authHeader) {
+      return res.status(401).json({
+        success: false,
+        message: 'Authorization header missing',
+      });
+    }
+
+    const [_, token] = authHeader.split(' ');
 
     const jwtPaylod = verifyAccessToken(token) as {
       userId: Types.ObjectId;
     };
+
     req.userId = jwtPaylod.userId;
     next();
   } catch (error) {

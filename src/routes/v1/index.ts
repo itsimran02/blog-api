@@ -9,7 +9,7 @@ const router = Router();
 import authRoutes from '@/routes/v1/auth';
 import userRoutes from '@/routes/v1/user';
 
-router.get('/', (req, res) => {
+router.get('/', (_, res) => {
   return res.status(200).json({
     message: 'Api is live',
     success: true,
@@ -20,6 +20,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/auth', authRoutes);
-router.use('/user', userRoutes);
+router.use('/users', userRoutes);
 
 export default router;
