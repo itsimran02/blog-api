@@ -12,7 +12,7 @@ const deleteUser = async (req: Request, res: Response) => {
       });
       logger.error('error deleting the user ');
     }
-    res.status(204).json({
+    res.status(200).json({
       message: 'user deleted successfully',
       success: true,
       user: deletedUser,
