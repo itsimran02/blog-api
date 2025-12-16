@@ -1,17 +1,17 @@
-// node modules
+import { MongoMemoryServer } from 'mongodb-memory-server';
+
 import { beforeAll, afterAll } from 'vitest';
+import mongoose from 'mongoose';
 
-// custom modules
-
-import { connectToDatabase, disconnectTheDatabase } from '../src/lib/mongoose';
-
+let mongo: MongoMemoryServer;
 beforeAll(async () => {
-  await connectToDatabase();
-  console.log('connected to the database');
+  mongo = await MongoMemoryServer.create();
+  const uri = mongo.getUri();
+  await mongoose.connect(uri);
 });
 
 afterAll(async () => {
-  await disconnectTheDatabase();
-
-  console.log('disconnected from the database , cleaned up ');
+  await mongoose.connection.dropDatabase();
+  await mongoose.connection.close();
+  await mongo.stop();
 });
