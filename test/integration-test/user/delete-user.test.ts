@@ -18,7 +18,6 @@ describe('POST /delete-user', () => {
     });
 
     const { accessToken } = loginResponse.body;
-    console.log(accessToken);
 
     const deleteResponse = await request
       .delete(`${API_STRING}/users/delete`)

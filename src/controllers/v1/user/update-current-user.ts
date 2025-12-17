@@ -17,8 +17,14 @@ const updateUser = async (req: Request, res: Response) => {
       });
       return;
     }
-    const checkEmail = await User.findOne({ email });
-    const checkUserName = await User.findOne({ userName });
+
+    const checkEmail = await User.findOne({
+      email,
+    });
+
+    const checkUserName = await User.findOne({
+      userName,
+    });
 
     if (checkEmail) {
       res.status(400).json({

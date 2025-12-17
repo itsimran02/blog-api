@@ -9,7 +9,7 @@ const getUser = async (req: Request, res: Response) => {
   try {
     const user = await User.findById(req.userId).select('-__v').lean().exec();
     res.status(200).json({
-      sucess: true,
+      success: true,
       user,
     });
   } catch (error) {
