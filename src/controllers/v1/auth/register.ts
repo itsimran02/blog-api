@@ -60,6 +60,7 @@ const register = async (req: Request, res: Response): Promise<void> => {
         email: newUser.email,
         role: newUser.role,
         userName: newUser.userName,
+        userId: newUser._id,
       },
       accessToken,
     });

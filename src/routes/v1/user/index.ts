@@ -8,6 +8,7 @@ import { Router } from 'express';
 import { body } from 'express-validator';
 import bcrypt from 'bcrypt';
 import { getAllUsers } from '@/controllers/v1/user/get_all_users';
+import getUserById from '@/controllers/v1/user/get_user_by_Id';
 
 const router = Router();
 
@@ -70,7 +71,7 @@ router.patch(
   updateUser,
 );
 router.get('/', authenticate, authorize(['admin']), getAllUsers);
-
+router.get('/:userId', authenticate, authorize(['admin']), getUserById);
 router.delete(
   '/delete',
   authenticate,

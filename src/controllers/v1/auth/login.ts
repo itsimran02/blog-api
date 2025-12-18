@@ -68,6 +68,7 @@ const login = async (req: Request, res: Response) => {
         userName: findUser.userName,
         email: findUser.email,
         role: findUser.role,
+        userId: findUser._id,
       },
     });
     logger.info('user logged in successfully');
