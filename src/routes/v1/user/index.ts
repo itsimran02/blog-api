@@ -1,6 +1,6 @@
 import deleteUser from '@/controllers/v1/user/delete_current_user';
 import getUser from '@/controllers/v1/user/get_current_user';
-import updateUser from '@/controllers/v1/user/update_current_user';
+import updateUser from '@/controllers/v1/user/update-current-user';
 import authenticate from '@/middleware/authenticate';
 import authorize from '@/middleware/authorize';
 import User from '@/models/user';
