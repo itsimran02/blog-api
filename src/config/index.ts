@@ -22,6 +22,8 @@ const config = {
   ACCESS_TOKEN_EXPIRY: process.env.ACCESS_TOKEN_EXPIRY as ms.StringValue,
   REFRESH_TOKEN_EXPIRY: process.env.REFRESH_TOKEN_EXPIRY as ms.StringValue,
   ALLOWED_ADMINS: process.env.ALLOWED_ADMINS,
+  RES_OFFSET: process.env.DEFAULT_RESOFFSET,
+  RES_LIMIT: process.env.DEFAULT_RESLIMIT,
 };
 
 export default config;

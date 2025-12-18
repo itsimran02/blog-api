@@ -1,12 +1,13 @@
-import deleteUser from '@/controllers/v1/user/delete-current-user';
-import getUser from '@/controllers/v1/user/get-current-user';
-import updateUser from '@/controllers/v1/user/update-current-user';
+import deleteUser from '@/controllers/v1/user/delete_current_user';
+import getUser from '@/controllers/v1/user/get_current_user';
+import updateUser from '@/controllers/v1/user/update_current_user';
 import authenticate from '@/middleware/authenticate';
 import authorize from '@/middleware/authorize';
 import User from '@/models/user';
 import { Router } from 'express';
 import { body } from 'express-validator';
 import bcrypt from 'bcrypt';
+import { getAllUsers } from '@/controllers/v1/user/get_all_users';
 
 const router = Router();
 
@@ -48,7 +49,7 @@ router.patch(
     .optional()
     .isLength({ min: 8 })
     .withMessage('password length should be atleast 8 characters')
-    .custom(async (value, { req }) => {
+    .custom(async (_, { req }) => {
       const { userId } = req;
       const { oldPassword } = req.body as {
         oldPassword: string;
@@ -68,6 +69,7 @@ router.patch(
     }),
   updateUser,
 );
+router.get('/', authenticate, authorize(['admin']), getAllUsers);
 
 router.delete(
   '/delete',
